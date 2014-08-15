@@ -1,0 +1,3 @@
+include idcf/compute/apirefs.json
+include buildout.cfg.default
+

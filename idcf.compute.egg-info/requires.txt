@@ -1,0 +1,7 @@
+setuptools
+httplib2
+simplejson
+argparse
+prettytable
+parsedatetime
+lxml

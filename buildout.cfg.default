@@ -1,0 +1,19 @@
+[buildout]
+parts =
+    master
+develop =
+    .
+
+[master]
+recipe = zc.recipe.egg
+eggs =
+    httplib2
+    simplejson
+    argparse
+    prettytable
+    parsedatetime
+    lxml
+    idcf.compute
+entry-points = idcf-compute-api=idcf.compute.shell:main
+interpreter = python
+scripts = idcf-compute-api

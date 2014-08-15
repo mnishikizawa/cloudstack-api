@@ -1,0 +1,3262 @@
+[
+  {
+    "help": "Creates and automatically starts a virtual machine based on a service offering, disk offering, and template.",
+    "name": "deployVirtualMachine",
+    "options": [
+      {
+        "required": "true",
+        "option": "--serviceofferingid",
+        "help": "the ID of the service offering for the virtual machine"
+      },
+      {
+        "required": "true",
+        "option": "--templateid",
+        "help": "the ID of the template for the virtual machine"
+      },
+      {
+        "required": "true",
+        "option": "--zoneid",
+        "help": "availability zone for the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "an optional account for the virtual machine. Must be used with domainId."
+      },
+      {
+        "required": "false",
+        "option": "--diskofferingid",
+        "help": "the ID of the disk offering for the virtual machine. If the template is of ISO format, the diskOfferingId is for the root disk volume. Otherwise this parameter is used to indicate the offering for the data disk volume. If the templateId parameter passed is from a Template object, the diskOfferingId refers to a DATA Disk Volume created. If the templateId parameter passed is from an ISO object, the diskOfferingId refers to a ROOT Disk Volume created."
+      },
+      {
+        "required": "false",
+        "option": "--displayname",
+        "help": "an optional user generated name for the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "an optional domainId for the virtual machine. If the account parameter is used, domainId must also be used."
+      },
+      {
+        "required": "false",
+        "option": "--group",
+        "help": "an optional group for the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--hostid",
+        "help": "destination Host ID to deploy the VM to - parameter available for root admin only"
+      },
+      {
+        "required": "false",
+        "option": "--hypervisor",
+        "help": "the hypervisor on which to deploy the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--ipaddress",
+        "help": "the ip address for default vm's network"
+      },
+      {
+        "required": "false",
+        "option": "--iptonetworklist",
+        "help": "ip to network mapping. Can't be specified with networkIds parameter. Example: iptonetworklist[0].ip=10.10.10.11&iptonetworklist[0].networkid=204 - requests to use ip 10.10.10.11 in network id=204"
+      },
+      {
+        "required": "false",
+        "option": "--keyboard",
+        "help": "an optional keyboard device type for the virtual machine. valid value can be one of de,de-ch,es,fi,fr,fr-be,fr-ch,is,it,jp,nl-be,no,pt,uk,us"
+      },
+      {
+        "required": "false",
+        "option": "--keypair",
+        "help": "name of the ssh key pair used to login to the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "host name for the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--networkids",
+        "help": "list of network ids used by virtual machine. Can't be specified with ipToNetworkList parameter"
+      },
+      {
+        "required": "false",
+        "option": "--securitygroupids",
+        "help": "comma separated list of security groups id that going to be applied to the virtual machine. Should be passed only when vm is created from a zone with Basic Network support. Mutually exclusive with securitygroupnames parameter"
+      },
+      {
+        "required": "false",
+        "option": "--securitygroupnames",
+        "help": "comma separated list of security groups names that going to be applied to the virtual machine. Should be passed only when vm is created from a zone with Basic Network support. Mutually exclusive with securitygroupids parameter"
+      },
+      {
+        "required": "false",
+        "option": "--size",
+        "help": "the arbitrary size for the DATADISK volume. Mutually exclusive with diskOfferingId"
+      },
+      {
+        "required": "false",
+        "option": "--userdata",
+        "help": "an optional binary data that can be sent to the virtual machine upon a successful deployment. This binary data must be base64 encoded before adding it to the request. Currently only HTTP GET is supported. Using HTTP GET (via querystring), you can send up to 2KB of data after base64 encoding."
+      }
+    ]
+  },
+  {
+    "help": "Destroys a virtual machine. Once destroyed, only the administrator can recover it.",
+    "name": "destroyVirtualMachine",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the virtual machine"
+      }
+    ]
+  },
+  {
+    "help": "Reboots a virtual machine.",
+    "name": "rebootVirtualMachine",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the virtual machine"
+      }
+    ]
+  },
+  {
+    "help": "Starts a virtual machine.",
+    "name": "startVirtualMachine",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the virtual machine"
+      }
+    ]
+  },
+  {
+    "help": "Stops a virtual machine.",
+    "name": "stopVirtualMachine",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--forced",
+        "help": "Force stop the VM.  The caller knows the VM is stopped."
+      }
+    ]
+  },
+  {
+    "help": "Resets the password for virtual machine. The virtual machine must be in a \"Stopped\" state and the template must already support this feature for this command to take effect. [async]",
+    "name": "resetPasswordForVirtualMachine",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the virtual machine"
+      }
+    ]
+  },
+  {
+    "help": "Changes the service offering for a virtual machine. The virtual machine must be in a \"Stopped\" state for this command to take effect.",
+    "name": "changeServiceForVirtualMachine",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the virtual machine"
+      },
+      {
+        "required": "true",
+        "option": "--serviceofferingid",
+        "help": "the service offering ID to apply to the virtual machine"
+      }
+    ]
+  },
+  {
+    "help": "Updates parameters of a virtual machine.",
+    "name": "updateVirtualMachine",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--displayname",
+        "help": "user generated name"
+      },
+      {
+        "required": "false",
+        "option": "--group",
+        "help": "group of the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--haenable",
+        "help": "true if high-availability is enabled for the virtual machine, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--ostypeid",
+        "help": "the ID of the OS type that best represents this VM."
+      },
+      {
+        "required": "false",
+        "option": "--userdata",
+        "help": "an optional binary data that can be sent to the virtual machine upon a successful deployment. This binary data must be base64 encoded before adding it to the request. Currently only HTTP GET is supported. Using HTTP GET (via querystring), you can send up to 2KB of data after base64 encoding."
+      }
+    ]
+  },
+  {
+    "help": "List the virtual machines owned by the account.",
+    "name": "listVirtualMachines",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "account. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID. If used with the account parameter, lists virtual machines for the specified account in this domain."
+      },
+      {
+        "required": "false",
+        "option": "--forvirtualnetwork",
+        "help": "list by network type; true if need to list vms using Virtual Network, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--groupid",
+        "help": "the group ID"
+      },
+      {
+        "required": "false",
+        "option": "--hostid",
+        "help": "the host ID"
+      },
+      {
+        "required": "false",
+        "option": "--hypervisor",
+        "help": "the target hypervisor for the template"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "the ID of the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--isrecursive",
+        "help": "Must be used with domainId parameter. Defaults to false, but if true, lists all vms from the parent specified by the domain id till leaves."
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "name of the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--networkid",
+        "help": "list by network id"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--podid",
+        "help": "the pod ID"
+      },
+      {
+        "required": "false",
+        "option": "--state",
+        "help": "state of the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--storageid",
+        "help": "the storage ID where vm's volumes belong to"
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "the availability zone ID"
+      }
+    ]
+  },
+  {
+    "help": "Returns an encrypted password for the VM",
+    "name": "getVMPassword",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the virtual machine"
+      }
+    ]
+  },
+  {
+    "help": "Creates a template of a virtual machine. The virtual machine must be in a STOPPED state. A template created from this command is automatically designated as a private template visible to the account that created it.",
+    "name": "createTemplate",
+    "options": [
+      {
+        "required": "true",
+        "option": "--displaytext",
+        "help": "the display text of the template. This is usually used for display purposes."
+      },
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "the name of the template"
+      },
+      {
+        "required": "true",
+        "option": "--ostypeid",
+        "help": "the ID of the OS Type that best represents the OS of this template."
+      },
+      {
+        "required": "false",
+        "option": "--bits",
+        "help": "32 or 64 bit"
+      },
+      {
+        "required": "false",
+        "option": "--isfeatured",
+        "help": "true if this template is a featured template, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--ispublic",
+        "help": "true if this template is a public template, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--passwordenabled",
+        "help": "true if the template supports the password reset feature; default is false"
+      },
+      {
+        "required": "false",
+        "option": "--requireshvm",
+        "help": "true if the template requres HVM, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--snapshotid",
+        "help": "the ID of the snapshot the template is being created from. Either this parameter, or volumeId has to be passed in"
+      },
+      {
+        "required": "false",
+        "option": "--url",
+        "help": "Optional, only for baremetal hypervisor. The directory name where template stored on CIFS server"
+      },
+      {
+        "required": "false",
+        "option": "--virtualmachineid",
+        "help": "Optional, VM ID. If this presents, it is going to create a baremetal template for VM this ID refers to. This is only for VM whose hypervisor type is BareMetal"
+      },
+      {
+        "required": "false",
+        "option": "--volumeid",
+        "help": "the ID of the disk volume the template is being created from. Either this parameter, or snapshotId has to be passed in"
+      }
+    ]
+  },
+  {
+    "help": "Registers an existing template into the Cloud.com cloud.",
+    "name": "registerTemplate",
+    "options": [
+      {
+        "required": "true",
+        "option": "--displaytext",
+        "help": "the display text of the template. This is usually used for display purposes."
+      },
+      {
+        "required": "true",
+        "option": "--format",
+        "help": "the format for the template. Possible values include QCOW2, RAW, and VHD."
+      },
+      {
+        "required": "true",
+        "option": "--hypervisor",
+        "help": "the target hypervisor for the template"
+      },
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "the name of the template"
+      },
+      {
+        "required": "true",
+        "option": "--ostypeid",
+        "help": "the ID of the OS Type that best represents the OS of this template."
+      },
+      {
+        "required": "true",
+        "option": "--url",
+        "help": "the URL of where the template is hosted. Possible URL include http:// and https://"
+      },
+      {
+        "required": "true",
+        "option": "--zoneid",
+        "help": "the ID of the zone the template is to be hosted on"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "an optional accountName. Must be used with domainId."
+      },
+      {
+        "required": "false",
+        "option": "--bits",
+        "help": "32 or 64 bits support. 64 by default"
+      },
+      {
+        "required": "false",
+        "option": "--checksum",
+        "help": "the MD5 checksum value of this template"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "an optional domainId. If the account parameter is used, domainId must also be used."
+      },
+      {
+        "required": "false",
+        "option": "--isextractable",
+        "help": "true if the template or its derivatives are extractable; default is false"
+      },
+      {
+        "required": "false",
+        "option": "--isfeatured",
+        "help": "true if this template is a featured template, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--ispublic",
+        "help": "true if the template is available to all accounts; default is true"
+      },
+      {
+        "required": "false",
+        "option": "--passwordenabled",
+        "help": "true if the template supports the password reset feature; default is false"
+      },
+      {
+        "required": "false",
+        "option": "--requireshvm",
+        "help": "true if this template requires HVM"
+      }
+    ]
+  },
+  {
+    "help": "Updates attributes of a template.",
+    "name": "updateTemplate",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the image file"
+      },
+      {
+        "required": "false",
+        "option": "--bootable",
+        "help": "true if image is bootable, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--displaytext",
+        "help": "the display text of the image"
+      },
+      {
+        "required": "false",
+        "option": "--format",
+        "help": "the format for the image"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "the name of the image file"
+      },
+      {
+        "required": "false",
+        "option": "--ostypeid",
+        "help": "the ID of the OS type that best represents the OS of this image."
+      },
+      {
+        "required": "false",
+        "option": "--passwordenabled",
+        "help": "true if the image supports the password reset feature; default is false"
+      }
+    ]
+  },
+  {
+    "help": "Copies a template from one zone to another.",
+    "name": "copyTemplate",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "Template ID."
+      },
+      {
+        "required": "true",
+        "option": "--destzoneid",
+        "help": "ID of the zone the template is being copied to."
+      },
+      {
+        "required": "true",
+        "option": "--sourcezoneid",
+        "help": "ID of the zone the template is currently hosted on."
+      }
+    ]
+  },
+  {
+    "help": "Deletes a template from the system. All virtual machines using the deleted template will not be affected.",
+    "name": "deleteTemplate",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the template"
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "the ID of zone of the template"
+      }
+    ]
+  },
+  {
+    "help": "List all public, private, and privileged templates.",
+    "name": "listTemplates",
+    "options": [
+      {
+        "required": "true",
+        "option": "--templatefilter",
+        "help": "possible values are \"featured\", \"self\", \"self-executable\", \"executable\", and \"community\".* featured-templates that are featured and are public* self-templates that have been registered/created by the owner* selfexecutable-templates that have been registered/created by the owner that can be used to deploy a new VM* executable-all templates that can be used to deploy a new VM* community-templates that are public."
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "list template by account. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "list all templates in specified domain. If used with the account parameter, lists all templates for an account in the specified domain."
+      },
+      {
+        "required": "false",
+        "option": "--hypervisor",
+        "help": "the hypervisor for which to restrict the search"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "the template ID"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "the template name"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "list templates by zoneId"
+      }
+    ]
+  },
+  {
+    "help": "Updates a template visibility permissions. A public template is visible to all accounts within the same domain. A private template is visible only to the owner of the template. A priviledged template is a private template with account permissions added. Only accounts specified under the template permissions are visible to them.",
+    "name": "updateTemplatePermissions",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the template ID"
+      },
+      {
+        "required": "false",
+        "option": "--accounts",
+        "help": "a comma delimited list of accounts. If specified, \"op\" parameter has to be passed in."
+      },
+      {
+        "required": "false",
+        "option": "--isextractable",
+        "help": "true if the template/iso is extractable, false other wise. Can be set only by root admin"
+      },
+      {
+        "required": "false",
+        "option": "--isfeatured",
+        "help": "true for featured template/iso, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--ispublic",
+        "help": "true for public template/iso, false for private templates/isos"
+      },
+      {
+        "required": "false",
+        "option": "--op",
+        "help": "permission operator (add, remove, reset)"
+      }
+    ]
+  },
+  {
+    "help": "List template visibility and all accounts that have permissions to view this template.",
+    "name": "listTemplatePermissions",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the template ID"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "List template visibility and permissions for the specified account. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "List template visibility and permissions by domain. If used with the account parameter, specifies in which domain the specified account exists."
+      }
+    ]
+  },
+  {
+    "help": "Extracts a template",
+    "name": "extractTemplate",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the template"
+      },
+      {
+        "required": "true",
+        "option": "--mode",
+        "help": "the mode of extraction - HTTP_DOWNLOAD or FTP_UPLOAD"
+      },
+      {
+        "required": "true",
+        "option": "--zoneid",
+        "help": "the ID of the zone where the ISO is originally located"
+      },
+      {
+        "required": "false",
+        "option": "--url",
+        "help": "the url to which the ISO would be extracted"
+      }
+    ]
+  },
+  {
+    "help": "Attaches an ISO to a virtual machine.",
+    "name": "attachIso",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the ISO file"
+      },
+      {
+        "required": "true",
+        "option": "--virtualmachineid",
+        "help": "the ID of the virtual machine"
+      }
+    ]
+  },
+  {
+    "help": "Detaches any ISO file (if any) currently attached to a virtual machine.",
+    "name": "detachIso",
+    "options": [
+      {
+        "required": "true",
+        "option": "--virtualmachineid",
+        "help": "The ID of the virtual machine"
+      }
+    ]
+  },
+  {
+    "help": "Lists all available ISO files.",
+    "name": "listIsos",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account of the ISO file. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--bootable",
+        "help": "true if the ISO is bootable, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "lists all available ISO files by ID of a domain. If used with the account parameter, lists all available ISO files for the account in the ID of a domain."
+      },
+      {
+        "required": "false",
+        "option": "--hypervisor",
+        "help": "the hypervisor for which to restrict the search"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "list all isos by id"
+      },
+      {
+        "required": "false",
+        "option": "--isofilter",
+        "help": "possible values are \"featured\", \"self\", \"self-executable\",\"executable\", and \"community\". * featured-ISOs that are featured and are publicself-ISOs that have been registered/created by the owner. * selfexecutable-ISOs that have been registered/created by the owner that can be used to deploy a new VM. * executable-all ISOs that can be used to deploy a new VM * community-ISOs that are public."
+      },
+      {
+        "required": "false",
+        "option": "--ispublic",
+        "help": "true if the ISO is publicly available to all users, false otherwise."
+      },
+      {
+        "required": "false",
+        "option": "--isready",
+        "help": "true if this ISO is ready to be deployed"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "list all isos by name"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "the ID of the zone"
+      }
+    ]
+  },
+  {
+    "help": "Registers an existing ISO into the Cloud.com Cloud.",
+    "name": "registerIso",
+    "options": [
+      {
+        "required": "true",
+        "option": "--displaytext",
+        "help": "the display text of the ISO. This is usually used for display purposes."
+      },
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "the name of the ISO"
+      },
+      {
+        "required": "true",
+        "option": "--url",
+        "help": "the URL to where the ISO is currently being hosted"
+      },
+      {
+        "required": "true",
+        "option": "--zoneid",
+        "help": "the ID of the zone you wish to register the ISO to."
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "an optional account name. Must be used with domainId."
+      },
+      {
+        "required": "false",
+        "option": "--bootable",
+        "help": "true if this ISO is bootable"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "an optional domainId. If the account parameter is used, domainId must also be used."
+      },
+      {
+        "required": "false",
+        "option": "--isextractable",
+        "help": "true if the iso or its derivatives are extractable; default is false"
+      },
+      {
+        "required": "false",
+        "option": "--isfeatured",
+        "help": "true if you want this ISO to be featured"
+      },
+      {
+        "required": "false",
+        "option": "--ispublic",
+        "help": "true if you want to register the ISO to be publicly available to all users, false otherwise."
+      },
+      {
+        "required": "false",
+        "option": "--ostypeid",
+        "help": "the ID of the OS Type that best represents the OS of this ISO"
+      }
+    ]
+  },
+  {
+    "help": "Updates an ISO file.",
+    "name": "updateIso",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the image file"
+      },
+      {
+        "required": "false",
+        "option": "--bootable",
+        "help": "true if image is bootable, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--displaytext",
+        "help": "the display text of the image"
+      },
+      {
+        "required": "false",
+        "option": "--format",
+        "help": "the format for the image"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "the name of the image file"
+      },
+      {
+        "required": "false",
+        "option": "--ostypeid",
+        "help": "the ID of the OS type that best represents the OS of this image."
+      },
+      {
+        "required": "false",
+        "option": "--passwordenabled",
+        "help": "true if the image supports the password reset feature; default is false"
+      }
+    ]
+  },
+  {
+    "help": "Deletes an ISO file.",
+    "name": "deleteIso",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the ISO file"
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "the ID of the zone of the ISO file. If not specified, the ISO will be deleted from all the zones"
+      }
+    ]
+  },
+  {
+    "help": "Copies a template from one zone to another.",
+    "name": "copyIso",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "Template ID."
+      },
+      {
+        "required": "true",
+        "option": "--destzoneid",
+        "help": "ID of the zone the template is being copied to."
+      },
+      {
+        "required": "true",
+        "option": "--sourcezoneid",
+        "help": "ID of the zone the template is currently hosted on."
+      }
+    ]
+  },
+  {
+    "help": "Updates iso permissions",
+    "name": "updateIsoPermissions",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the template ID"
+      },
+      {
+        "required": "false",
+        "option": "--accounts",
+        "help": "a comma delimited list of accounts. If specified, \"op\" parameter has to be passed in."
+      },
+      {
+        "required": "false",
+        "option": "--isextractable",
+        "help": "true if the template/iso is extractable, false other wise. Can be set only by root admin"
+      },
+      {
+        "required": "false",
+        "option": "--isfeatured",
+        "help": "true for featured template/iso, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--ispublic",
+        "help": "true for public template/iso, false for private templates/isos"
+      },
+      {
+        "required": "false",
+        "option": "--op",
+        "help": "permission operator (add, remove, reset)"
+      }
+    ]
+  },
+  {
+    "help": "List template visibility and all accounts that have permissions to view this template.",
+    "name": "listIsoPermissions",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the template ID"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "List template visibility and permissions for the specified account. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "List template visibility and permissions by domain. If used with the account parameter, specifies in which domain the specified account exists."
+      }
+    ]
+  },
+  {
+    "help": "Extracts an ISO",
+    "name": "extractIso",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the ISO file"
+      },
+      {
+        "required": "true",
+        "option": "--mode",
+        "help": "the mode of extraction - HTTP_DOWNLOAD or FTP_UPLOAD"
+      },
+      {
+        "required": "true",
+        "option": "--zoneid",
+        "help": "the ID of the zone where the ISO is originally located"
+      },
+      {
+        "required": "false",
+        "option": "--url",
+        "help": "the url to which the ISO would be extracted"
+      }
+    ]
+  },
+  {
+    "help": "Attaches a disk volume to a virtual machine.",
+    "name": "attachVolume",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the disk volume"
+      },
+      {
+        "required": "true",
+        "option": "--virtualmachineid",
+        "help": "the ID of the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--deviceid",
+        "help": "the ID of the device to map the volume to within the guest OS. If no deviceId is passed in, the next available deviceId will be chosen. Possible values for a Linux OS are:* 1 - /dev/xvdb* 2 - /dev/xvdc* 4 - /dev/xvde* 5 - /dev/xvdf* 6 - /dev/xvdg* 7 - /dev/xvdh* 8 - /dev/xvdi* 9 - /dev/xvdj"
+      }
+    ]
+  },
+  {
+    "help": "Detaches a disk volume from a virtual machine.",
+    "name": "detachVolume",
+    "options": [
+      {
+        "required": "false",
+        "option": "--deviceid",
+        "help": "the device ID on the virtual machine where volume is detached from"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "the ID of the disk volume"
+      },
+      {
+        "required": "false",
+        "option": "--virtualmachineid",
+        "help": "the ID of the virtual machine where the volume is detached from"
+      }
+    ]
+  },
+  {
+    "help": "Creates a disk volume from a disk offering. This disk volume must still be attached to a virtual machine to make use of it.",
+    "name": "createVolume",
+    "options": [
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "the name of the disk volume"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account associated with the disk volume. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--diskofferingid",
+        "help": "the ID of the disk offering. Either diskOfferingId or snapshotId must be passed in."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID associated with the disk offering. If used with the account parameter returns the disk volume associated with the account for the specified domain."
+      },
+      {
+        "required": "false",
+        "option": "--size",
+        "help": "Arbitrary volume size"
+      },
+      {
+        "required": "false",
+        "option": "--snapshotid",
+        "help": "the snapshot ID for the disk volume. Either diskOfferingId or snapshotId must be passed in."
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "the ID of the availability zone"
+      }
+    ]
+  },
+  {
+    "help": "Deletes a detached disk volume.",
+    "name": "deleteVolume",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the disk volume"
+      }
+    ]
+  },
+  {
+    "help": "Lists all volumes.",
+    "name": "listVolumes",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account associated with the disk volume. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "Lists all disk volumes for the specified domain ID. If used with the account parameter, returns all disk volumes for an account in the specified domain ID."
+      },
+      {
+        "required": "false",
+        "option": "--hostid",
+        "help": "list volumes on specified host"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "the ID of the disk volume"
+      },
+      {
+        "required": "false",
+        "option": "--isrecursive",
+        "help": "defaults to false, but if true, lists all volumes from the parent specified by the domain id till leaves."
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "the name of the disk volume"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--podid",
+        "help": "the pod id the disk volume belongs to"
+      },
+      {
+        "required": "false",
+        "option": "--type",
+        "help": "the type of disk volume"
+      },
+      {
+        "required": "false",
+        "option": "--virtualmachineid",
+        "help": "the ID of the virtual machine"
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "the ID of the availability zone"
+      }
+    ]
+  },
+  {
+    "help": "Extracts volume",
+    "name": "extractVolume",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the volume"
+      },
+      {
+        "required": "true",
+        "option": "--mode",
+        "help": "the mode of extraction - HTTP_DOWNLOAD or FTP_UPLOAD"
+      },
+      {
+        "required": "true",
+        "option": "--zoneid",
+        "help": "the ID of the zone where the volume is located"
+      },
+      {
+        "required": "false",
+        "option": "--url",
+        "help": "the url to which the volume would be extracted"
+      }
+    ]
+  },
+  {
+    "help": "Creates a security group",
+    "name": "createSecurityGroup",
+    "options": [
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "name of the security group"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "an optional account for the security group. Must be used with domainId."
+      },
+      {
+        "required": "false",
+        "option": "--description",
+        "help": "the description of the security group"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "an optional domainId for the security group. If the account parameter is used, domainId must also be used."
+      }
+    ]
+  },
+  {
+    "help": "Deletes security group",
+    "name": "deleteSecurityGroup",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account of the security group. Must be specified with domain ID"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID of account owning the security group"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "The ID of the security group. Mutually exclusive with name parameter"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "The ID of the security group. Mutually exclusive with id parameter"
+      }
+    ]
+  },
+  {
+    "help": "Authorizes a particular ingress rule for this security group",
+    "name": "authorizeSecurityGroupIngress",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "an optional account for the virtual machine. Must be used with domainId."
+      },
+      {
+        "required": "false",
+        "option": "--cidrlist",
+        "help": "the cidr list associated"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "an optional domainId for the security group. If the account parameter is used, domainId must also be used."
+      },
+      {
+        "required": "false",
+        "option": "--endport",
+        "help": "end port for this ingress rule"
+      },
+      {
+        "required": "false",
+        "option": "--icmpcode",
+        "help": "error code for this icmp message"
+      },
+      {
+        "required": "false",
+        "option": "--icmptype",
+        "help": "type of the icmp message being sent"
+      },
+      {
+        "required": "false",
+        "option": "--protocol",
+        "help": "TCP is default. UDP is the other supported protocol"
+      },
+      {
+        "required": "false",
+        "option": "--securitygroupid",
+        "help": "The ID of the security group. Mutually exclusive with securityGroupName parameter"
+      },
+      {
+        "required": "false",
+        "option": "--securitygroupname",
+        "help": "The name of the security group. Mutually exclusive with securityGroupName parameter"
+      },
+      {
+        "required": "false",
+        "option": "--startport",
+        "help": "start port for this ingress rule"
+      },
+      {
+        "required": "false",
+        "option": "--usersecuritygrouplist",
+        "help": "user to security group mapping"
+      }
+    ]
+  },
+  {
+    "help": "Deletes a particular ingress rule from this security group",
+    "name": "revokeSecurityGroupIngress",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the ingress rule"
+      }
+    ]
+  },
+  {
+    "help": "Lists security groups",
+    "name": "listSecurityGroups",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "lists all available port security groups for the account. Must be used with domainID parameter"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "lists all available security groups for the domain ID. If used with the account parameter, lists all available security groups for the account in the specified domain ID."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "list the security group by the id provided"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--securitygroupname",
+        "help": "lists security groups by name"
+      },
+      {
+        "required": "false",
+        "option": "--virtualmachineid",
+        "help": "lists security groups by virtual machine id"
+      }
+    ]
+  },
+  {
+    "help": "Lists accounts and provides detailed account information for listed accounts",
+    "name": "listAccounts",
+    "options": [
+      {
+        "required": "false",
+        "option": "--accounttype",
+        "help": "list accounts by account type. Valid account types are 1 (admin), 2 (domain-admin), and 0 (user)."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "list all accounts in specified domain. If used with the name parameter, retrieves account information for the account with specified name in specified domain."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "list account by account ID"
+      },
+      {
+        "required": "false",
+        "option": "--iscleanuprequired",
+        "help": "list accounts by cleanuprequred attribute (values are true or false)"
+      },
+      {
+        "required": "false",
+        "option": "--isrecursive",
+        "help": "defaults to false, but if true, lists all accounts from the parent specified by the domain id till leaves."
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "list account by account name"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--state",
+        "help": "list accounts by state. Valid states are enabled, disabled, and locked."
+      }
+    ]
+  },
+  {
+    "help": "Creates an instant snapshot of a volume.",
+    "name": "createSnapshot",
+    "options": [
+      {
+        "required": "true",
+        "option": "--volumeid",
+        "help": "The ID of the disk volume"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "The account of the snapshot. The account parameter must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "The domain ID of the snapshot. If used with the account parameter, specifies a domain for the account associated with the disk volume."
+      },
+      {
+        "required": "false",
+        "option": "--policyid",
+        "help": "policy id of the snapshot, if this is null, then use MANUAL_POLICY."
+      }
+    ]
+  },
+  {
+    "help": "Lists all available snapshots for the account.",
+    "name": "listSnapshots",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "lists snapshot belongig to the specified account. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID. If used with the account parameter, lists snapshots for the specified account in this domain."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "lists snapshot by snapshot ID"
+      },
+      {
+        "required": "false",
+        "option": "--intervaltype",
+        "help": "valid values are HOURLY, DAILY, WEEKLY, and MONTHLY."
+      },
+      {
+        "required": "false",
+        "option": "--isrecursive",
+        "help": "defaults to false, but if true, lists all snapshots from the parent specified by the domain id till leaves."
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "lists snapshot by snapshot name"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--snapshottype",
+        "help": "valid values are MANUAL or RECURRING."
+      },
+      {
+        "required": "false",
+        "option": "--volumeid",
+        "help": "the ID of the disk volume"
+      }
+    ]
+  },
+  {
+    "help": "Deletes a snapshot of a disk volume.",
+    "name": "deleteSnapshot",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the snapshot"
+      }
+    ]
+  },
+  {
+    "help": "Creates a snapshot policy for the account.",
+    "name": "createSnapshotPolicy",
+    "options": [
+      {
+        "required": "true",
+        "option": "--intervaltype",
+        "help": "valid values are HOURLY, DAILY, WEEKLY, and MONTHLY"
+      },
+      {
+        "required": "true",
+        "option": "--maxsnaps",
+        "help": "maximum number of snapshots to retain"
+      },
+      {
+        "required": "true",
+        "option": "--schedule",
+        "help": "time the snapshot is scheduled to be taken. Format is:* if HOURLY, MM* if DAILY, MM:HH* if WEEKLY, MM:HH:DD (1-7)* if MONTHLY, MM:HH:DD (1-28)"
+      },
+      {
+        "required": "true",
+        "option": "--timezone",
+        "help": "Specifies a timezone for this command. For more information on the timezone parameter, see Time Zone Format."
+      },
+      {
+        "required": "true",
+        "option": "--volumeid",
+        "help": "the ID of the disk volume"
+      }
+    ]
+  },
+  {
+    "help": "Deletes snapshot policies for the account.",
+    "name": "deleteSnapshotPolicies",
+    "options": [
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "the Id of the snapshot"
+      },
+      {
+        "required": "false",
+        "option": "--ids",
+        "help": "list of snapshots IDs separated by comma"
+      }
+    ]
+  },
+  {
+    "help": "Lists snapshot policies.",
+    "name": "listSnapshotPolicies",
+    "options": [
+      {
+        "required": "true",
+        "option": "--volumeid",
+        "help": "the ID of the disk volume"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "lists snapshot policies for the specified account. Must be used with domainid parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID. If used with the account parameter, lists snapshot policies for the specified account in this domain."
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Retrieves the current status of asynchronous job.",
+    "name": "queryAsyncJobResult",
+    "options": [
+      {
+        "required": "true",
+        "option": "--jobid",
+        "help": "the ID of the asychronous job"
+      }
+    ]
+  },
+  {
+    "help": "Lists all pending asynchronous jobs for the account.",
+    "name": "listAsyncJobs",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account associated with the async job. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID associated with the async job.  If used with the account parameter, returns async jobs for the account in the specified domain."
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--startdate",
+        "help": "the start date of the async job"
+      }
+    ]
+  },
+  {
+    "help": "A command to list events.",
+    "name": "listEvents",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account for the event. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID for the event. If used with the account parameter, returns all events for an account in the specified domain ID."
+      },
+      {
+        "required": "false",
+        "option": "--duration",
+        "help": "the duration of the event"
+      },
+      {
+        "required": "false",
+        "option": "--enddate",
+        "help": "the end date range of the list you want to retrieve (use format \"yyyy-MM-dd\" or the new format \"yyyy-MM-dd HH:mm:ss\")"
+      },
+      {
+        "required": "false",
+        "option": "--entrytime",
+        "help": "the time the event was entered"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "the ID of the event"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--level",
+        "help": "the event level (INFO, WARN, ERROR)"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--startdate",
+        "help": "the start date range of the list you want to retrieve (use format \"yyyy-MM-dd\" or the new format \"yyyy-MM-dd HH:mm:ss\")"
+      },
+      {
+        "required": "false",
+        "option": "--type",
+        "help": "the event type (see event types)"
+      }
+    ]
+  },
+  {
+    "help": "List Event Types",
+    "name": "listEventTypes",
+    "options": []
+  },
+  {
+    "help": "Lists all supported OS types for this cloud.",
+    "name": "listOsTypes",
+    "options": [
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "list by Os type Id"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--oscategoryid",
+        "help": "list by Os Category id"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Lists all supported OS categories for this cloud.",
+    "name": "listOsCategories",
+    "options": [
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "list Os category by id"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Lists all available service offerings.",
+    "name": "listServiceOfferings",
+    "options": [
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the ID of the domain associated with the service offering"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "ID of the service offering"
+      },
+      {
+        "required": "false",
+        "option": "--issystem",
+        "help": "is this a system vm offering"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "name of the service offering"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--systemvmtype",
+        "help": "the system VM type. Possible types are \"consoleproxy\", \"secondarystoragevm\" or \"domainrouter\"."
+      },
+      {
+        "required": "false",
+        "option": "--virtualmachineid",
+        "help": "the ID of the virtual machine. Pass this in if you want to see the available service offering that a virtual machine can be changed to."
+      }
+    ]
+  },
+  {
+    "help": "Lists all available disk offerings.",
+    "name": "listDiskOfferings",
+    "options": [
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the ID of the domain of the disk offering."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "ID of the disk offering"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "name of the disk offering"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Register a public key in a keypair under a certain name",
+    "name": "registerSSHKeyPair",
+    "options": [
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "Name of the keypair"
+      },
+      {
+        "required": "true",
+        "option": "--publickey",
+        "help": "Public key material of the keypair"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "an optional account for the ssh key. Must be used with domainId."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "an optional domainId for the ssh key. If the account parameter is used, domainId must also be used."
+      }
+    ]
+  },
+  {
+    "help": "Create a new keypair and returns the private key",
+    "name": "createSSHKeyPair",
+    "options": [
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "Name of the keypair"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "an optional account for the ssh key. Must be used with domainId."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "an optional domainId for the ssh key. If the account parameter is used, domainId must also be used."
+      }
+    ]
+  },
+  {
+    "help": "Deletes a keypair by name",
+    "name": "deleteSSHKeyPair",
+    "options": [
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "Name of the keypair"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account associated with the keypair. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID associated with the keypair"
+      }
+    ]
+  },
+  {
+    "help": "List registered keypairs",
+    "name": "listSSHKeyPairs",
+    "options": [
+      {
+        "required": "false",
+        "option": "--fingerprint",
+        "help": "A public key fingerprint to look for"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "A key pair name to look for"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Acquires and associates a public IP to an account.",
+    "name": "associateIpAddress",
+    "options": [
+      {
+        "required": "true",
+        "option": "--zoneid",
+        "help": "the ID of the availability zone you want to acquire an public IP address from"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account to associate with this IP address"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the ID of the domain to associate with this IP address"
+      },
+      {
+        "required": "false",
+        "option": "--networkid",
+        "help": "The network this ip address should be associated to."
+      }
+    ]
+  },
+  {
+    "help": "Disassociates an ip address from the account.",
+    "name": "disassociateIpAddress",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the id of the public ip address to disassociate"
+      }
+    ]
+  },
+  {
+    "help": "Lists all public ip addresses",
+    "name": "listPublicIpAddresses",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "lists all public IP addresses by account. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--allocatedonly",
+        "help": "limits search results to allocated public IP addresses"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "lists all public IP addresses by domain ID. If used with the account parameter, lists all public IP addresses by account for specified domain."
+      },
+      {
+        "required": "false",
+        "option": "--forloadbalancing",
+        "help": "list only ips used for load balancing"
+      },
+      {
+        "required": "false",
+        "option": "--forvirtualnetwork",
+        "help": "the virtual network for the IP address"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "lists ip address by id"
+      },
+      {
+        "required": "false",
+        "option": "--ipaddress",
+        "help": "lists the specified IP address"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--vlanid",
+        "help": "lists all public IP addresses by VLAN ID"
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "lists all public IP addresses by Zone ID"
+      }
+    ]
+  },
+  {
+    "help": "Lists all port forwarding rules for an IP address.",
+    "name": "listPortForwardingRules",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "account. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID. If used with the account parameter, lists port forwarding rules for the specified account in this domain."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "Lists rule with the specified ID."
+      },
+      {
+        "required": "false",
+        "option": "--ipaddressid",
+        "help": "the id of IP address of the port forwarding services"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Creates a port forwarding rule",
+    "name": "createPortForwardingRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--ipaddressid",
+        "help": "the IP address id of the port forwarding rule"
+      },
+      {
+        "required": "true",
+        "option": "--privateport",
+        "help": "the starting port of port forwarding rule's private port range"
+      },
+      {
+        "required": "true",
+        "option": "--protocol",
+        "help": "the protocol for the port fowarding rule. Valid values are TCP or UDP."
+      },
+      {
+        "required": "true",
+        "option": "--publicport",
+        "help": "the starting port of port forwarding rule's public port range"
+      },
+      {
+        "required": "true",
+        "option": "--virtualmachineid",
+        "help": "the ID of the virtual machine for the port forwarding rule"
+      },
+      {
+        "required": "false",
+        "option": "--cidrlist",
+        "help": "the cidr list to forward traffic from"
+      },
+      {
+        "required": "false",
+        "option": "--openfirewall",
+        "help": "if true, firewall rule for source/end pubic port is automatically created; if false - firewall rule has to be created explicitely. Has value true by default"
+      },
+      {
+        "required": "false",
+        "option": "--privateendport",
+        "help": "the ending port of port forwarding rule's private port range"
+      },
+      {
+        "required": "false",
+        "option": "--publicendport",
+        "help": "the ending port of port forwarding rule's private port range"
+      }
+    ]
+  },
+  {
+    "help": "Deletes a port forwarding rule",
+    "name": "deletePortForwardingRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the port forwarding rule"
+      }
+    ]
+  },
+  {
+    "help": "Creates a firewall rule for a given ip address",
+    "name": "createFirewallRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--ipaddressid",
+        "help": "the IP address id of the port forwarding rule"
+      },
+      {
+        "required": "true",
+        "option": "--protocol",
+        "help": "the protocol for the firewall rule. Valid values are TCP/UDP/ICMP."
+      },
+      {
+        "required": "false",
+        "option": "--cidrlist",
+        "help": "the cidr list to forward traffic from"
+      },
+      {
+        "required": "false",
+        "option": "--endport",
+        "help": "the ending port of firewall rule"
+      },
+      {
+        "required": "false",
+        "option": "--icmpcode",
+        "help": "error code for this icmp message"
+      },
+      {
+        "required": "false",
+        "option": "--icmptype",
+        "help": "type of the icmp message being sent"
+      },
+      {
+        "required": "false",
+        "option": "--startport",
+        "help": "the starting port of firewall rule"
+      }
+    ]
+  },
+  {
+    "help": "Deletes a firewall rule",
+    "name": "deleteFirewallRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the firewall rule"
+      }
+    ]
+  },
+  {
+    "help": "Lists all firewall rules for an IP address.",
+    "name": "listFirewallRules",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "account. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID. If used with the account parameter, lists firewall rules for the specified account in this domain."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "Lists rule with the specified ID."
+      },
+      {
+        "required": "false",
+        "option": "--ipaddressid",
+        "help": "the id of IP address of the firwall services"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Enables static nat for given ip address",
+    "name": "enableStaticNat",
+    "options": [
+      {
+        "required": "true",
+        "option": "--ipaddressid",
+        "help": "the public IP address id for which static nat feature is being enabled"
+      },
+      {
+        "required": "true",
+        "option": "--virtualmachineid",
+        "help": "the ID of the virtual machine for enabling static nat feature"
+      }
+    ]
+  },
+  {
+    "help": "Creates an ip forwarding rule",
+    "name": "createIpForwardingRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--ipaddressid",
+        "help": "the public IP address id of the forwarding rule, already associated via associateIp"
+      },
+      {
+        "required": "true",
+        "option": "--protocol",
+        "help": "the protocol for the rule. Valid values are TCP or UDP."
+      },
+      {
+        "required": "true",
+        "option": "--startport",
+        "help": "the start port for the rule"
+      },
+      {
+        "required": "false",
+        "option": "--cidrlist",
+        "help": "the cidr list to forward traffic from"
+      },
+      {
+        "required": "false",
+        "option": "--endport",
+        "help": "the end port for the rule"
+      },
+      {
+        "required": "false",
+        "option": "--openfirewall",
+        "help": "if true, firewall rule for source/end pubic port is automatically created; if false - firewall rule has to be created explicitely. Has value true by default"
+      }
+    ]
+  },
+  {
+    "help": "Deletes an ip forwarding rule",
+    "name": "deleteIpForwardingRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the id of the forwarding rule"
+      }
+    ]
+  },
+  {
+    "help": "List the ip forwarding rules",
+    "name": "listIpForwardingRules",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account associated with the ip forwarding rule. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "Lists all rules for this id. If used with the account parameter, returns all rules for an account in the specified domain ID."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "Lists rule with the specified ID."
+      },
+      {
+        "required": "false",
+        "option": "--ipaddressid",
+        "help": "list the rule belonging to this public ip address"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--virtualmachineid",
+        "help": "Lists all rules applied to the specified Vm."
+      }
+    ]
+  },
+  {
+    "help": "Disables static rule for given ip address",
+    "name": "disableStaticNat",
+    "options": [
+      {
+        "required": "true",
+        "option": "--ipaddressid",
+        "help": "the public IP address id for which static nat feature is being disableed"
+      }
+    ]
+  },
+  {
+    "help": "Creates a load balancer rule",
+    "name": "createLoadBalancerRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--algorithm",
+        "help": "load balancer algorithm (source, roundrobin, leastconn)"
+      },
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "name of the load balancer rule"
+      },
+      {
+        "required": "true",
+        "option": "--privateport",
+        "help": "the private port of the private ip address/virtual machine where the network traffic will be load balanced to"
+      },
+      {
+        "required": "true",
+        "option": "--publicport",
+        "help": "the public port from where the network traffic will be load balanced from"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account associated with the load balancer. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--cidrlist",
+        "help": "the cidr list to forward traffic from"
+      },
+      {
+        "required": "false",
+        "option": "--description",
+        "help": "the description of the load balancer rule"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID associated with the load balancer"
+      },
+      {
+        "required": "false",
+        "option": "--openfirewall",
+        "help": "if true, firewall rule for source/end pubic port is automatically created; if false - firewall rule has to be created explicitely. Has value true by default"
+      },
+      {
+        "required": "false",
+        "option": "--publicipid",
+        "help": "public ip address id from where the network traffic will be load balanced from"
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "public ip address id from where the network traffic will be load balanced from"
+      }
+    ]
+  },
+  {
+    "help": "Deletes a load balancer rule.",
+    "name": "deleteLoadBalancerRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the load balancer rule"
+      }
+    ]
+  },
+  {
+    "help": "Removes a virtual machine or a list of virtual machines from a load balancer rule.",
+    "name": "removeFromLoadBalancerRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The ID of the load balancer rule"
+      },
+      {
+        "required": "true",
+        "option": "--virtualmachineids",
+        "help": "the list of IDs of the virtual machines that are being removed from the load balancer rule (i.e. virtualMachineIds=1,2,3)"
+      }
+    ]
+  },
+  {
+    "help": "Assigns virtual machine or a list of virtual machines to a load balancer rule.",
+    "name": "assignToLoadBalancerRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the load balancer rule"
+      },
+      {
+        "required": "true",
+        "option": "--virtualmachineids",
+        "help": "the list of IDs of the virtual machine that are being assigned to the load balancer rule(i.e. virtualMachineIds=1,2,3)"
+      }
+    ]
+  },
+  {
+    "help": "Lists load balancer rules.",
+    "name": "listLoadBalancerRules",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account of the load balancer rule. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID of the load balancer rule. If used with the account parameter, lists load balancer rules for the account in the specified domain."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "the ID of the load balancer rule"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "the name of the load balancer rule"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--publicipid",
+        "help": "the public IP address id of the load balancer rule"
+      },
+      {
+        "required": "false",
+        "option": "--virtualmachineid",
+        "help": "the ID of the virtual machine of the load balancer rule"
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "the availability zone ID"
+      }
+    ]
+  },
+  {
+    "help": "List all virtual machine instances that are assigned to a load balancer rule.",
+    "name": "listLoadBalancerRuleInstances",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the load balancer rule"
+      },
+      {
+        "required": "false",
+        "option": "--applied",
+        "help": "true if listing all virtual machines currently applied to the load balancer rule; default is true"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Updates load balancer",
+    "name": "updateLoadBalancerRule",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the id of the load balancer rule to update"
+      },
+      {
+        "required": "false",
+        "option": "--algorithm",
+        "help": "load balancer algorithm (source, roundrobin, leastconn)"
+      },
+      {
+        "required": "false",
+        "option": "--description",
+        "help": "the description of the load balancer rule"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "the name of the load balancer rule"
+      }
+    ]
+  },
+  {
+    "help": "Creates a vm group",
+    "name": "createInstanceGroup",
+    "options": [
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "the name of the instance group"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account of the instance group. The account parameter must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID of account owning the instance group"
+      }
+    ]
+  },
+  {
+    "help": "Deletes a vm group",
+    "name": "deleteInstanceGroup",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the instance group"
+      }
+    ]
+  },
+  {
+    "help": "Updates a vm group",
+    "name": "updateInstanceGroup",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "Instance group ID"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "new instance group name"
+      }
+    ]
+  },
+  {
+    "help": "Lists vm groups",
+    "name": "listInstanceGroups",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "list instance group belonging to the specified account. Must be used with domainid parameter"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID. If used with the account parameter, lists virtual machines for the specified account in this domain."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "list instance groups by ID"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "list instance groups by name"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Creates a network",
+    "name": "createNetwork",
+    "options": [
+      {
+        "required": "true",
+        "option": "--displaytext",
+        "help": "the display text of the network"
+      },
+      {
+        "required": "true",
+        "option": "--name",
+        "help": "the name of the network"
+      },
+      {
+        "required": "true",
+        "option": "--networkofferingid",
+        "help": "the network offering id"
+      },
+      {
+        "required": "true",
+        "option": "--zoneid",
+        "help": "the Zone ID for the network"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "account who will own the network"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "domain ID of the account owning a network"
+      },
+      {
+        "required": "false",
+        "option": "--endip",
+        "help": "the ending IP address in the network IP range. If not specified, will be defaulted to startIP"
+      },
+      {
+        "required": "false",
+        "option": "--gateway",
+        "help": "the gateway of the network"
+      },
+      {
+        "required": "false",
+        "option": "--isdefault",
+        "help": "true if network is default, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--isshared",
+        "help": "true is network is shared across accounts in the Zone"
+      },
+      {
+        "required": "false",
+        "option": "--netmask",
+        "help": "the netmask of the network"
+      },
+      {
+        "required": "false",
+        "option": "--networkdomain",
+        "help": "network domain"
+      },
+      {
+        "required": "false",
+        "option": "--startip",
+        "help": "the beginning IP address in the network IP range"
+      },
+      {
+        "required": "false",
+        "option": "--tags",
+        "help": "Tag the network"
+      },
+      {
+        "required": "false",
+        "option": "--vlan",
+        "help": "the ID or VID of the network"
+      }
+    ]
+  },
+  {
+    "help": "Deletes a network",
+    "name": "deleteNetwork",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the network"
+      }
+    ]
+  },
+  {
+    "help": "Lists all available networks.",
+    "name": "listNetworks",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "account who will own the VLAN. If VLAN is Zone wide, this parameter should be ommited"
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "domain ID of the account owning a VLAN"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "list networks by id"
+      },
+      {
+        "required": "false",
+        "option": "--isdefault",
+        "help": "true if network is default, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--isshared",
+        "help": "true if network is shared across accounts in the Zone, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--issystem",
+        "help": "true if network is system, false otherwise"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--traffictype",
+        "help": "type of the traffic"
+      },
+      {
+        "required": "false",
+        "option": "--type",
+        "help": "the type of the network"
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "the Zone ID of the network"
+      }
+    ]
+  },
+  {
+    "help": "Restarts the network; includes 1) restarting network elements - virtual routers, dhcp servers 2) reapplying all public ips 3) reapplying loadBalancing/portForwarding rules",
+    "name": "restartNetwork",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "The id of the network to restart."
+      }
+    ]
+  },
+  {
+    "help": "Updates a network",
+    "name": "updateNetwork",
+    "options": [
+      {
+        "required": "true",
+        "option": "--id",
+        "help": "the ID of the network"
+      },
+      {
+        "required": "false",
+        "option": "--displaytext",
+        "help": "the new display text for the network"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "the new name for the network"
+      },
+      {
+        "required": "false",
+        "option": "--networkdomain",
+        "help": "network domain"
+      },
+      {
+        "required": "false",
+        "option": "--tags",
+        "help": "tags for the network"
+      }
+    ]
+  },
+  {
+    "help": "Creates a l2tp/ipsec remote access vpn",
+    "name": "createRemoteAccessVpn",
+    "options": [
+      {
+        "required": "true",
+        "option": "--publicipid",
+        "help": "public ip address id of the vpn server"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "an optional account for the VPN. Must be used with domainId."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "an optional domainId for the VPN. If the account parameter is used, domainId must also be used."
+      },
+      {
+        "required": "false",
+        "option": "--iprange",
+        "help": "the range of ip addresses to allocate to vpn clients. The first ip in the range will be taken by the vpn server"
+      },
+      {
+        "required": "false",
+        "option": "--openfirewall",
+        "help": "if true, firewall rule for source/end pubic port is automatically created; if false - firewall rule has to be created explicitely. Has value true by default"
+      }
+    ]
+  },
+  {
+    "help": "Destroys a l2tp/ipsec remote access vpn",
+    "name": "deleteRemoteAccessVpn",
+    "options": [
+      {
+        "required": "true",
+        "option": "--publicipid",
+        "help": "public ip address id of the vpn server"
+      }
+    ]
+  },
+  {
+    "help": "Lists remote access vpns",
+    "name": "listRemoteAccessVpns",
+    "options": [
+      {
+        "required": "true",
+        "option": "--publicipid",
+        "help": "public ip address id of the vpn server"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account of the remote access vpn. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID of the remote access vpn rule. If used with the account parameter, lists remote access vpns for the account in the specified domain."
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Adds vpn users",
+    "name": "addVpnUser",
+    "options": [
+      {
+        "required": "true",
+        "option": "--password",
+        "help": "password for the username"
+      },
+      {
+        "required": "true",
+        "option": "--username",
+        "help": "username for the vpn user"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "an optional account for the vpn user. Must be used with domainId."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "an optional domainId for the vpn user. If the account parameter is used, domainId must also be used."
+      }
+    ]
+  },
+  {
+    "help": "Removes vpn user",
+    "name": "removeVpnUser",
+    "options": [
+      {
+        "required": "true",
+        "option": "--username",
+        "help": "username for the vpn user"
+      },
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "an optional account for the vpn user. Must be used with domainId."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "an optional domainId for the vpn user. If the account parameter is used, domainId must also be used."
+      }
+    ]
+  },
+  {
+    "help": "Lists vpn users",
+    "name": "listVpnUsers",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "the account of the remote access vpn. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the domain ID of the remote access vpn. If used with the account parameter, lists remote access vpns for the account in the specified domain."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "the ID of the vpn user"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--username",
+        "help": "the username of the vpn user."
+      }
+    ]
+  },
+  {
+    "help": "List hypervisors",
+    "name": "listHypervisors",
+    "options": [
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "the zone id for listing hypervisors."
+      }
+    ]
+  },
+  {
+    "help": "Lists zones",
+    "name": "listZones",
+    "options": [
+      {
+        "required": "false",
+        "option": "--available",
+        "help": "true if you want to retrieve all available Zones. False if you only want to return the Zones from which you have at least one VM. Default is false."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "the ID of the domain associated with the zone"
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "the ID of the zone"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      }
+    ]
+  },
+  {
+    "help": "Lists all available network offerings.",
+    "name": "listNetworkOfferings",
+    "options": [
+      {
+        "required": "false",
+        "option": "--availability",
+        "help": "the availability of network offering. Default value is Required"
+      },
+      {
+        "required": "false",
+        "option": "--displaytext",
+        "help": "list network offerings by display text"
+      },
+      {
+        "required": "false",
+        "option": "--guestiptype",
+        "help": "the guest ip type for the network offering, supported types are Direct and Virtual."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "list network offerings by id"
+      },
+      {
+        "required": "false",
+        "option": "--isdefault",
+        "help": "true if need to list only default network offerings. Default value is false"
+      },
+      {
+        "required": "false",
+        "option": "--isshared",
+        "help": "true is network offering supports vlans"
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--name",
+        "help": "list network offerings by name"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--specifyvlan",
+        "help": "the tags for the network offering."
+      },
+      {
+        "required": "false",
+        "option": "--traffictype",
+        "help": "list by traffic type"
+      },
+      {
+        "required": "false",
+        "option": "--zoneid",
+        "help": "list netowrk offerings available for network creation in specific zone"
+      }
+    ]
+  },
+  {
+    "help": "Lists capabilities",
+    "name": "listCapabilities",
+    "options": []
+  },
+  {
+    "help": "Lists resource limits.",
+    "name": "listResourceLimits",
+    "options": [
+      {
+        "required": "false",
+        "option": "--account",
+        "help": "Lists resource limits by account. Must be used with the domainId parameter."
+      },
+      {
+        "required": "false",
+        "option": "--domainid",
+        "help": "Lists resource limits by domain ID. If used with the account parameter, lists resource limits for a specified account in a specified domain."
+      },
+      {
+        "required": "false",
+        "option": "--id",
+        "help": "Lists resource limits by ID."
+      },
+      {
+        "required": "false",
+        "option": "--keyword",
+        "help": "List by keyword"
+      },
+      {
+        "required": "false",
+        "option": "--page",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--pagesize",
+        "help": ""
+      },
+      {
+        "required": "false",
+        "option": "--resourcetype",
+        "help": "Type of resource to update. Values are 0, 1, 2, 3, and 4. 0 - Instance. Number of instances a user can create. 1 - IP. Number of public IP addresses a user can own. 2 - Volume. Number of disk volumes a user can create.3 - Snapshot. Number of snapshots a user can create.4 - Template. Number of templates that a user can register/create."
+      }
+    ]
+  },
+  {
+    "help": "Retrieves a cloud identifier.",
+    "name": "getCloudIdentifier",
+    "options": [
+      {
+        "required": "true",
+        "option": "--userid",
+        "help": "the user ID for the cloud identifier"
+      }
+    ]
+  },
+  {
+    "help": "Logs a user into the CloudStack. A successful login attempt will generate a JSESSIONID cookie value that can be passed in subsequent Query command calls until the \"logout\" command has been issued or the session has expired.",
+    "name": "login",
+    "options": [
+      {
+        "required": "true",
+        "option": "--username",
+        "help": "Username"
+      },
+      {
+        "required": "true",
+        "option": "--password",
+        "help": "Hashed password (Default is MD5). If you wish to use any other hashing algorithm, you would need to write a custom authentication adapter See Docs section."
+      },
+      {
+        "required": "false",
+        "option": "--domain",
+        "help": "path of the domain that the user belongs to. Example: domain=/com/cloud/internal.  If no domain is passed in, the ROOT domain is assumed."
+      }
+    ]
+  },
+  {
+    "help": "Logs out the user",
+    "name": "logout",
+    "options": []
+  }
+]
