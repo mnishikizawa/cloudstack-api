@@ -11,14 +11,25 @@ import simplejson
 import codecs
 import csv
 import StringIO
+import ConfigParser
 from lxml import etree
 from prettytable import PrettyTable
 from pkg_resources import resource_string
 
-VERSION = '0.9.0'
+VERSION = '0.10.0'
 
-API_REFS_JSON = resource_string('idcf.compute', 'apirefs.json')
-API_REFS = simplejson.loads(API_REFS_JSON)
+config = ConfigParser.SafeConfigParser()
+config.read(client.API_CONF_PATH)
+try:
+    api_refs_json_path = os.environ.get('IDCF_COMPUTE_API_REFS_JSON')
+    if not api_refs_json_path:
+        api_refs_json_path = config.get("account", "api_refs_json")
+    api_refs = simplejson.load(open(api_refs_json_path,"r"))
+except:
+    api_refs_json = resource_string('idcf.compute', 'apirefs.json')
+    api_refs = simplejson.loads(api_refs_json)
+
+API_REFS = api_refs
 
 class ShellCommand(object):
     """コマンドのベースクラス
@@ -78,7 +89,7 @@ class IdcfShell(object):
         commands = []
         for index, desc in enumerate(API_REFS):
             key = desc["name"]
-            command = type(key.encode("utf-8"),(ShellCommand,),{"__doc__":desc["help"], "index":index})
+            command = type(key.encode("utf-8"),(ShellCommand,),{"__doc__":desc["help"].encode("utf-8"), "index":index})
             def options(self):
                 def opt_required(required):
                     if required == "true":
@@ -86,7 +97,7 @@ class IdcfShell(object):
                     else:
                         return False
                 retval = [arg(opt["option"],required=opt_required(opt["required"]),
-                            help=opt["help"])
+                            help=opt["help"].encode("utf-8"))
                         for opt in API_REFS[self.index]["options"]]
 
                 retval.append(arg("-t","--table",help="displaying tabular format",
@@ -156,7 +167,7 @@ def print_dict_csv(obj,fields,no_headers):
         headers = and_headers(obj,fields)
         if not headers:
             headers = obj.keys()
-
+            
         data,writer = get_csv_writer()
         if not no_headers:
             writer.writerow(headers)
@@ -171,9 +182,9 @@ def print_list_csv(res,fields,no_headers):
             if fields:
                 headers = and_headers(obj,fields)
                 if not headers:
-                    headers = obj.keys()
+                    headers = or_keys(rows)
             else:
-                headers = obj.keys()
+                headers = or_keys(rows)
 
             data,writer = get_csv_writer()
             if not no_headers:
@@ -182,7 +193,15 @@ def print_list_csv(res,fields,no_headers):
     print data.getvalue()
 
 def and_headers(obj,fields):
-    return list(set([ f.strip() for f in fields.split(',')]) & set(obj.keys()))
+    fields_list = [ f.strip() for f in fields.split(',')]
+    sorted_list = [f for f in fields_list if f in obj.keys()]
+    return sorted_list
+
+def or_keys(rows):
+    set_keys = set([])
+    for obj in rows:
+        set_keys |= set(obj.keys())
+    return sorted(list(set_keys))
 
 def print_dict(obj,fields):
     if not obj:
@@ -190,7 +209,7 @@ def print_dict(obj,fields):
     else:
         headers = and_headers(obj,fields)
         if not headers:
-            headers = obj.keys()
+            headers = sorted(obj.keys())
         pt = PrettyTable(headers)
         pt.add_row( [obj.get(k) for k in headers])
         pt.printt(sortby=headers[0])
@@ -203,9 +222,9 @@ def print_list(res,fields):
             if fields:
                 headers = and_headers(obj,fields)
                 if not headers:
-                    headers = obj.keys()
+                    headers = or_keys(rows)
             else:
-                headers = obj.keys()
+                headers = or_keys(rows)
 
             pt = PrettyTable(headers)
             [pt.set_field_align("%s"%h,"l") for h in headers]
