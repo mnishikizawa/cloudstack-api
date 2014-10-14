@@ -14,6 +14,6 @@ eggs =
     parsedatetime
     lxml
     idcf.compute
-entry-points = idcf-compute-api=idcf.compute.shell:main
+entry-points = cloudstack-api=cloudstack.compute.shell:main
 interpreter = python
-scripts = idcf-compute-api
+scripts = cloudstack-api

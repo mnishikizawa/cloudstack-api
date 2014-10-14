@@ -1,3 +1,0 @@
-[console_scripts]
-idcf-compute-api = idcf.compute.shell:main
-

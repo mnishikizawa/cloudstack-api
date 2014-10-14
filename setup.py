@@ -5,9 +5,9 @@ import shutil
 
 VERSION = '0.9.0'
 
-setup(name='idcf.compute',
+setup(name='cloudstack.compute',
       version=VERSION,
-      packages=['idcf','idcf.compute'],
+      packages=['cloudstack','cloudstack.compute'],
       include_package_data=True,
       #scripts=['scripts/idcf-compute-api'],
       install_requires=['setuptools',
@@ -20,7 +20,7 @@ setup(name='idcf.compute',
                         ],
       entry_points={
         'console_scripts': [
-            'idcf-compute-api = idcf.compute.shell:main'
+            'cloudstack-api = cloudstack.compute.shell:main'
             ]
         }
       )

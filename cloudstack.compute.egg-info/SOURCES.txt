@@ -1,0 +1,17 @@
+MANIFEST.in
+buildout.cfg.default
+setup.py
+cloudstack/__init__.py
+cloudstack/ppj.py
+cloudstack/utils.py
+cloudstack.compute.egg-info/PKG-INFO
+cloudstack.compute.egg-info/SOURCES.txt
+cloudstack.compute.egg-info/dependency_links.txt
+cloudstack.compute.egg-info/entry_points.txt
+cloudstack.compute.egg-info/requires.txt
+cloudstack.compute.egg-info/top_level.txt
+cloudstack/compute/__init__.py
+cloudstack/compute/apirefs.json
+cloudstack/compute/client.py
+cloudstack/compute/shell.py
+cloudstack/compute/stack.py

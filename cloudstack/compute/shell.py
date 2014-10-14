@@ -26,7 +26,7 @@ try:
         api_refs_json_path = config.get("account", "api_refs_json")
     api_refs = simplejson.load(open(api_refs_json_path,"r"))
 except:
-    api_refs_json = resource_string('idcf.compute', 'apirefs.json')
+    api_refs_json = resource_string('cloudstack.compute', 'apirefs.json')
     api_refs = simplejson.loads(api_refs_json)
 
 API_REFS = api_refs
@@ -65,7 +65,7 @@ def arg(*args,**kw):
 class IdcfShell(object):
     def __init__(self):
         self.arg_parser = argparse.ArgumentParser(
-            prog = 'idcf-compute-api',
+            prog = 'cloudstack-api',
             #usage='%(prog)s [-h]',
             )
         self.arg_parser.add_argument('-v','--version', action='version', version="%(prog)s v"+VERSION)
