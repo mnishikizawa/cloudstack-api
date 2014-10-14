@@ -11,7 +11,7 @@ eggs =
     simplejson
     argparse
     prettytable
-#    parsedatetime
+    parsedatetime
     lxml
     idcf.compute
 entry-points = idcf-compute-api=idcf.compute.shell:main
