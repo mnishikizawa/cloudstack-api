@@ -15,7 +15,7 @@ setup(name='idcf.compute',
                         'simplejson',
                         'argparse',
                         'prettytable',
-                        'parsedatetime',
+#                        'parsedatetime',
                         'lxml',
                         ],
       entry_points={
