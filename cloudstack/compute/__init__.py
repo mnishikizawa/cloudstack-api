@@ -1,5 +1,5 @@
-from idcf.compute.shell import API_REFS
-from idcf.utils import res, dict2obj
+from cloudstack.compute.shell import API_REFS
+from cloudstack.utils import res, dict2obj
 import client
 import urllib
 import sys
