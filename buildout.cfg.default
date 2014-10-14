@@ -13,7 +13,7 @@ eggs =
     prettytable
     parsedatetime
     lxml
-    idcf.compute
+    cloudstack.compute
 entry-points = cloudstack-api=cloudstack.compute.shell:main
 interpreter = python
 scripts = cloudstack-api
