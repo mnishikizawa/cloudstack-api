@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 import os
 import shutil
 
-VERSION = '0.9.0'
+VERSION = '0.1.0'
 
 setup(name='cloudstack.compute',
       version=VERSION,
