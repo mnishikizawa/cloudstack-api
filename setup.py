@@ -7,7 +7,7 @@ VERSION = '0.9.0'
 
 setup(name='idcf.compute',
       version=VERSION,
-      packages=['idcf','idcf.compute','parsedatetime'],
+      packages=['idcf','idcf.compute'],
       include_package_data=True,
       #scripts=['scripts/idcf-compute-api'],
       install_requires=['setuptools',
