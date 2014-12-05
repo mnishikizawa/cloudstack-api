@@ -164,7 +164,7 @@ def print_dict_csv(obj,fields,no_headers):
     if not obj:
         print "no data found"
     else:
-        headers = and_headers(obj,fields)
+        headers = get_headers(fields)
         if not headers:
             headers = obj.keys()
             
@@ -180,7 +180,7 @@ def print_list_csv(res,fields,no_headers):
     for i,obj in enumerate(rows):
         if i < 1:
             if fields:
-                headers = and_headers(obj,fields)
+                headers = get_headers(fields)
                 if not headers:
                     headers = or_keys(rows)
             else:
@@ -192,10 +192,11 @@ def print_list_csv(res,fields,no_headers):
         writer.writerow([obj.get(k) for k in headers])
     print data.getvalue()
 
-def and_headers(obj,fields):
+def get_headers(fields):
     fields_list = [ f.strip() for f in fields.split(',')]
-    sorted_list = [f for f in fields_list if f in obj.keys()]
-    return sorted_list
+    if fields_list[0] == '*' and len(fields_list) == 1:
+      fields_list = []
+    return fields_list
 
 def or_keys(rows):
     set_keys = set([])
@@ -207,7 +208,7 @@ def print_dict(obj,fields):
     if not obj:
         print "no data found"
     else:
-        headers = and_headers(obj,fields)
+        headers = get_headers(fields)
         if not headers:
             headers = sorted(obj.keys())
         pt = PrettyTable(headers)
@@ -220,7 +221,7 @@ def print_list(res,fields):
     for i,obj in enumerate(rows):
         if i < 1:
             if fields:
-                headers = and_headers(obj,fields)
+                headers = get_headers(fields)
                 if not headers:
                     headers = or_keys(rows)
             else:

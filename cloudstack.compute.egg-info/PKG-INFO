@@ -1,10 +1,10 @@
 Metadata-Version: 1.0
 Name: cloudstack.compute
-Version: 0.9.0
-Summary: UNKNOWN
+Version: 0.10.1
+Summary: Client for Cloud Stack 
 Home-page: UNKNOWN
 Author: UNKNOWN
-Author-email: UNKNOWN
-License: UNKNOWN
-Description: UNKNOWN
+Author-email: aueno@idcf.jp
+License: MIT
+Description: Client for Cloud Stack. You can create virtual machine, load balancer on Cloud Stack by using this package. 
 Platform: UNKNOWN
