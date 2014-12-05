@@ -16,7 +16,7 @@ from lxml import etree
 from prettytable import PrettyTable
 from pkg_resources import resource_string
 
-VERSION = '0.10.0'
+VERSION = '0.10.1'
 
 config = ConfigParser.SafeConfigParser()
 config.read(client.API_CONF_PATH)
