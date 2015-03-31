@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 import os
 import shutil
 
-VERSION = '0.10.1'
+VERSION = '0.10.2'
 
 setup(name='cloudstack.compute',
       version=VERSION,
@@ -13,8 +13,8 @@ setup(name='cloudstack.compute',
                         'httplib2',
                         'simplejson',
                         'argparse',
-                        'prettytable==0.5',
-                        'parsedatetime==0.8.7',
+                        'prettytable>=0.5',
+                        'parsedatetime>=0.8.7',
                         'lxml',
                         ],
       entry_points={

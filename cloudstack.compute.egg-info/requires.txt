@@ -2,6 +2,6 @@ setuptools
 httplib2
 simplejson
 argparse
-prettytable
-parsedatetime
+prettytable>=0.5
+parsedatetime>=0.8.7
 lxml

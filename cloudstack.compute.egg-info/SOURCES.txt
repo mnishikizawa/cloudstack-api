@@ -1,5 +1,6 @@
 MANIFEST.in
 buildout.cfg.default
+setup.cfg
 setup.py
 cloudstack/__init__.py
 cloudstack/ppj.py
