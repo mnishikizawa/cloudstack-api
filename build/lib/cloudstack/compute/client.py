@@ -11,7 +11,8 @@ import ConfigParser
 from cloudstack.utils import safe_option
 from stack import Stack
 
-API_CONF_PATH = os.path.join(os.path.expanduser("~"),".idcfrc")
+#API_CONF_PATH = os.path.join(os.path.expanduser("~"),".idcfrc")
+API_CONF_PATH = os.environ.get('IDCF_API_CONF_PATH')
 logging.basicConfig(format="%(asctime)s %(module)s[%(lineno)d] [%(levelname)s]: %(message)s",
                     #filename = "log.txt",
                     level=logging.INFO)
